@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int depthX =-1;
+    int depthY = -1;
+    int parentX = -1;
+    int parentY = -1;
+    void getDepth(TreeNode* root,int x,int y,int c,int parent){
+        if(root == nullptr) return;
+        if(root->val == x) {
+            depthX = c;
+            parentX = parent;
+            if(depthY != -1) return;
+        }
+        else if (root->val == y){
+            depthY = c;
+            parentY = parent;
+            if(depthX != -1) return;  
+        }
+        getDepth(root->left,x,y,c+1,root->val);
+        getDepth(root->right,x,y,c+1,root->val);
+    }
+    bool isCousins(TreeNode* root, int x, int y) {
+        getDepth(root,x,y,0,0);
+        if(depthX == depthY && parentX != parentY) return true;
+        return false;
+    }
+};
