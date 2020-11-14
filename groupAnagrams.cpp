@@ -6,7 +6,7 @@
 */
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& s) {
+    vector<vector<string>> groupAnagrams1(vector<string>& s) {
         unordered_map<string,vector<string>> groups;
         for(int i=0;i<s.size();i++){
             string beforeSort = s[i];
@@ -21,5 +21,25 @@ public:
 
         return result;
 
+    }
+
+    vector<vector<string>> groupAnagrams2(vector<string>& strs) {
+        map<string,vector<string>>m;
+        for(int i = 0; i < strs.size(); i++) {
+            int count[26] = {0};
+            for(int j=0; j < strs[i].length(); j++) count[strs[i][j]-'a']++;
+            string s = "";
+            for (int i = 0; i < 26; i++) {
+                s+="#";
+                s+=count[i];
+            }
+            m[s].push_back(strs[i]);
+        }
+        vector<vector<string>>ans;
+        for(auto i:m) {
+            ans.push_back(i.second);
+        }
+
+        return ans;
     }
 };
