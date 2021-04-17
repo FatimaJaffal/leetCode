@@ -1,0 +1,14 @@
+/* 
+  link => https://leetcode.com/problems/global-and-local-inversions/
+  Time complexity: O(n), space complexity O(1).
+*/
+class Solution {
+public:
+    bool isIdealPermutation(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); i++) {
+          if (abs(nums[i] - i) > 1)
+            return false;
+        }
+      return true;
+    }
+};
